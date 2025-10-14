@@ -1,12 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
 </head>
+
 <body>
-    
+    <!--cabeçalho-->
+    <header>
+        <!--menu principal-->
+        <nav>
+            <ul>
+                <li>Usuários</li>
+                <li>Produtos</li>
+                <li>Clientes</li>
+            </ul>
+        </nav>
+    </header>
+    <!--área principal-->
+    <main>
+        <h1>CADASTRO DE USUÁRIOS</h1>
+        <div id="formulario">
+            <form id="form-usuario">
+                <table>
+
+                    <tr>
+                        <td><label for="nomeusuario">Nome:</label></td>
+                        <td> <input type="text" name="tnomeusuario" id="nome-usuario" placeholder="Nome">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="emailusuario">Email:</label> </td>
+                        <td> <input type="text" name="temailusuario" id="email-usuario" placeholder="email"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit">Salvar</button>
+                        </td>
+                        <td>
+                            <button type="reset">Cancelar</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <h2>Lista de Usuarios cadastrados</h2>
+        <div id="listagem">
+            <table>
+                <thead>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                <tbody id="tabela-usuarios">
+
+                </tbody>
+                </thead>
+            </table>
+            <div>
+                <button type="submit">Cadastrar </button>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
 </body>
+
 </html>
