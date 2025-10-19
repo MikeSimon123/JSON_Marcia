@@ -7,26 +7,29 @@ formUser.addEventListener("submit", (e) => {
     let nomeUsuario = document.getElementById("nome-usuario").value;
     let emailUsuario = document.getElementById("email-usuario").value;
 
-    console.log(nomeUsuario)
-    console.log(emailUsuario)
+    if(nomeUsuario != "" && emailUsuario != ""){
+        let usuarios = []
 
-    let usuarios = []
+        if(localStorage.hasOwnProperty("usuarios")){
+            usuarios = JSON.parse(localStorage.getItem("usuarios"))
+        }
 
-    if(localStorage.hasOwnProperty("usuarios")){
-        usuarios = JSON.parse(localStorage.getItem("usuarios"))
+        usuarios.push({nomeUsuario, emailUsuario})
+        localStorage.setItem("usuarios", JSON.stringify(usuarios))
+
+        //Atualizar a tabela na tela
+        //exibirUsuarios()
+        exibirUsuarios(usuarios)
+
+        
+
+        //limpa o formulario
+        formUser.reset()
+    } else {
+        window.alert("Preencha os campos completamente antes de cadastrar!")
     }
 
-    usuarios.push({nomeUsuario, emailUsuario})
-    localStorage.setItem("usuarios", JSON.stringify(usuarios))
-
-    //Atualizar a tabela na tela
-    //exibirUsuarios()
-    exibirUsuarios(usuarios)
-
     
-
-    //limpa o formulario
-    formUser.reset()
 })
 
 function exibirUsuarios(users){
