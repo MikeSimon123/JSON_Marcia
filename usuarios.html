@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Cadastro de Usuários</title>
 </head>
 
 <body>
@@ -23,33 +27,33 @@
     </header>
     <!--área principal-->
     <main>
-        <h1>CADASTRO DE USUÁRIOS</h1>
+        
         <div id="formulario">
+            <h1>CADASTRO DE USUÁRIOS</h1>
             <form id="form-usuario">
-                <table>
 
-                    <tr>
-                        <td><label for="nomeusuario">Nome:</label></td>
-                        <td> <input type="text" name="tnomeusuario" id="nome-usuario" placeholder="Nome">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="emailusuario">Email:</label> </td>
-                        <td> <input type="text" name="temailusuario" id="email-usuario" placeholder="email"></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button type="submit">Cadastrar</button>
-                        </td>
-                        <td>
-                            <button type="reset">Cancelar</button>
-                        </td>
-                    </tr>
-                </table>
+                <div id="cxform">
+                    <div id="conteudoForm">
+                        <label for="nome-usuario">Nome:</label>
+                        <input type="text" name="tnomeusuario" id="nome-usuario" placeholder="Digite seu nome">
+
+                        <label for="email-usuario">Email:</label>
+                        <input type="text" name="temailusuario" id="email-usuario" placeholder="Digite seu email">
+                    </div>
+                
+                    <div id="botoesForm">
+                        <button type="submit">Cadastrar</button>
+                        <button type="reset">Cancelar</button>
+                    </div>
+                </div>
+                
+                
             </form>
         </div>
-        <h2>Lista de Usuarios cadastrados</h2>
-        <div id="listagem">
+
+        <div id="tabela">
+            <h2>Lista de Usuários cadastrados</h2>
+
             <table id="tabelaUsuarios">
                 <tr>
                     <th>ID</th>
@@ -59,9 +63,13 @@
 
             </table>
         </div>
+        
+
     </main>
     <footer>
         <!-- Colocar flex-box, javascript, 'nome e prontuario' no footer-->
+        <p>Nome: Miguel Duram Silva Santos</p>
+        <p>Prontuário: GU3051862</p>
     </footer>
 
     <script src="js/script.js"></script>
