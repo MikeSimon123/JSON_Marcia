@@ -6,6 +6,25 @@ let email = document.getElementById("email-usuario")
 let botaoCadastrar = document.getElementById("botCad")
 let botaoCancelar = document.getElementById("botCancel")
 
+let nomeAtual = ""
+
+document.getElementById("formEdicao").addEventListener("reset", function(){
+    document.getElementById("edicao").style.display = "none"
+    document.getElementById("overlay").style.display = "none"
+    document.getElementById("nomeUsuarioAtual").innerHTML = "Usuário em edição: "
+})
+
+document.getElementById("formEdicao").addEventListener("submit", function(){
+    let usuarios = JSON.parse(localStorage.getItem("usuarios"))
+    usuarios.forEach(objeto => {
+        if(objeto.nomeUsuario == nomeAtual){
+            objeto.nomeUsuario = document.getElementById("nomeUsuarioEdicao").value
+            objeto.emailUsuario = document.getElementById("emailUsuarioEdicao").value
+        }
+    })
+
+    localStorage.setItem("usuarios", JSON.stringify(usuarios))
+}) 
 let idUsuarioEmEdicao = null
 
 formUser.addEventListener("submit", (e) => {
@@ -53,6 +72,14 @@ function exibirUsuarios(users){
 
         document.getElementById(`excluir${index}`).addEventListener('click', function(){
                 removerUsuario(index)
+        })
+        document.getElementById(`editar${index}`).addEventListener("click", function(){
+            document.getElementById("edicao").style.display = "flex"
+            document.getElementById("nomeUsuarioEdicao").value = JSON.parse(localStorage.getItem("usuarios"))[index].nomeUsuario
+            document.getElementById("emailUsuarioEdicao").value = JSON.parse(localStorage.getItem("usuarios"))[index].emailUsuario
+            document.getElementById("overlay").style.display = "block"
+            document.getElementById("nomeUsuarioAtual").innerHTML += JSON.parse(localStorage.getItem("usuarios"))[index].nomeUsuario
+            nomeAtual = JSON.parse(localStorage.getItem("usuarios"))[index].nomeUsuario
         })
     })
 
