@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style2.css">
+    <title>Cadastro de Clientes</title>
+</head>
+<body>
+    <main>
+        <h1>Cadastro de Clientes</h1>
+        <form id="cad-cliente">
+            <p>Insira seu nome:</p>
+            <input type="text" id="cad-name" placeholder="Digite seu nome" required>
+            <p>Insira seu email:</p>
+            <input type="email" id="cad-email" placeholder="Digite seu email" required>
+            <p>Insira sua cidade:</p>
+            <input type="text" id="cad-cidade" placeholder="Digite sua idade" required>
+            <p>Insira sua data de nascimento:</p>
+            <input type="date" id="cad-nasc" max="2025-11-11" required>
+            <input type="reset" value="Cancelar" id="resetCadButton"><input type="submit" value="Cadastrar" id="cadButton">
+        </form>
+
+        <table id="clientes-table">
+            <th>ID</th><th>Nome</th><th>Email</th><th>Cidade</th><th>Data de Nascimento</th><th>Ações</th>
+        </table>
+    </main>
+
+    <div id="overlay"></div>
+    <div id="editForm">
+        <form id="editFormForm">
+            <p>Nome:</p><input type="text" id="editname">
+            <p>Email:</p><input type="email" id="editemail">
+            <p>Cidade:</p><input type="text" id="editcidade">
+            <p>Data de Nascimento</p><input type="date" id="editnascimento" max="2025-11-11">
+            <input type="reset" value="Cancelar" id="editCancel"><input type="submit" value="Editar" id="editEditar">
+        </form>
+    </div>
+
+    <script src="js/clientes.js"></script>
+</body>
+</html>
