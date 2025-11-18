@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style3.css">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="formLogin">  
+        <div id="formloginin">
+            <p>Nome:</p> <input type="text" id="loginNome" required placeholder="Digite seu nome">
+            <p>Email:</p> <input type="email" id="loginEmail" required placeholder="Digite seu email">
+        </div>
+        <input type="submit" value="Entrar" id="entrarLogin">
+    </form>
+
+    <script>
+        let tentativas = 3;
+        document.getElementById("formLogin").addEventListener("submit", function(e){
+            e.preventDefault();
+            if(verSeExiste(document.getElementById("loginNome").value, document.getElementById("loginEmail").value) == 1){
+                window.alert("Seja bem vindo(a)!!!"); window.location = "clientes.html";
+            } else {
+                tentativas -= 1;
+                if(tentativas == 0){
+                    window.alert("Você perdeu suas tentativas! Volte para página de usuários e cadastre-se!");
+                    window.location = "usuarios.html";
+                }
+                window.alert(`Você errou! Tentativas restantes: ${tentativas}`);
+                
+            }
+        })
+
+        function verSeExiste(nome, email){
+            let retorno = 0;
+            if(localStorage.hasOwnProperty("usuarios")){
+                JSON.parse(localStorage.getItem("usuarios")).forEach(usuario => {
+                    if(usuario.nomeUsuario == nome && usuario.emailUsuario == email){
+                        retorno = 1;
+                    }
+                })
+            }
+            
+            return retorno;
+        }
+
+    </script>
+</body>
+</html>
