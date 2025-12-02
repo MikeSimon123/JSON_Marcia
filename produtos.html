@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style4.css">
+    <title>Produtos</title>
+</head>
+<body>
+    <nav>
+        <a href="clientes.html">Clientes</a>
+        <a href="login.html">LOGIN</a>
+        <a href="produtos.html">PRODUTOS</a>
+        <a href="usuarios.html">USUÁRIOS</a>
+    </nav>
+    <h2>CRUD de Produtos</h2>
+    <div id="formulario2">
+        <input type="text" id="nome" placeholder="Nome do produto">
+        <input type="number" id="preco" placeholder="Preço">
+        <button onclick="salvarProduto()">Salvar</button>
+    </div>
+
+    <h3>Lista de Produtos</h3>
+    <table id="tabelinha2">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-produtos"></tbody>
+    </table>
+
+<script>
+    // Carrega produtos do LocalStorage
+    function obterProdutos() {
+        return JSON.parse(localStorage.getItem("produtos")) || [];
+    }
+
+    // Salva lista de produtos no LocalStorage
+    function salvarProdutos(lista) {
+        localStorage.setItem("produtos", JSON.stringify(lista));
+    }
+
+    // Função principal: cria ou edita produto
+    function salvarProduto() {
+        const nome = document.getElementById("nome").value;
+        const preco = document.getElementById("preco").value;
+
+        if (!nome || !preco) {
+            alert("Preencha todos os campos!");
+            return;
+        }
+
+        let produtos = obterProdutos();
+        let idEdicao = sessionStorage.getItem("editandoId");
+
+        if (idEdicao !== null) {
+            // Editando produto
+            produtos[idEdicao] = { nome, preco };
+            sessionStorage.removeItem("editandoId"); // limpa a edição
+            alert("Produto atualizado!");
+        } else {
+            // Criando produto novo
+            produtos.push({ nome, preco });
+            alert("Produto adicionado!");
+        }
+
+        salvarProdutos(produtos);
+        limparCampos();
+        listarProdutos();
+    }
+
+    // Listar os produtos no HTML
+    function listarProdutos() {
+        const produtos = obterProdutos();
+        const tabela = document.getElementById("tabela-produtos");
+
+        tabela.innerHTML = "";
+
+        produtos.forEach((prod, index) => {
+            tabela.innerHTML += `
+                <tr>
+                    <td>${prod.nome}</td>
+                    <td>R$ ${prod.preco}</td>
+                    <td>
+                        <button class="btn" onclick="editarProduto(${index})">Editar</button>
+                        <button class="btn" onclick="excluirProduto(${index})">Excluir</button>
+                    </td>
+                </tr>
+            `;
+        });
+    }
+
+    // Ação: apagar produto
+    function excluirProduto(index) {
+        let produtos = obterProdutos();
+        produtos.splice(index, 1);
+        salvarProdutos(produtos);
+        listarProdutos();
+    }
+
+    // Ação: preencher campos para editar
+    function editarProduto(index) {
+        const produtos = obterProdutos();
+        const produto = produtos[index];
+
+        document.getElementById("nome").value = produto.nome;
+        document.getElementById("preco").value = produto.preco;
+
+        sessionStorage.setItem("editandoId", index); // aqui usamos SESSION STORAGE
+    }
+
+    // Limpa campos
+    function limparCampos() {
+        document.getElementById("nome").value = "";
+        document.getElementById("preco").value = "";
+    }
+
+    // Inicializa listagem ao abrir a página
+    listarProdutos();
+</script>
+
+</body>
+</html>
